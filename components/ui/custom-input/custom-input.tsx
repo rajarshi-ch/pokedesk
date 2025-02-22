@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FocusEvent } from "react";
 import styles from "./custom-input.module.css";
 
 type CustomInputProps = {
@@ -38,28 +38,51 @@ const CustomInput: React.FC<CustomInputProps> = ({
     // If no explicit ID, use the name
     const inputId = id || name;
 
-    // Track focus to know when to float the label
+    // Track focus state (to float label on focus)
     const [isFocused, setIsFocused] = useState(false);
 
-    // Determine if the label should float (either on focus or if there's a value)
-    const shouldFloatLabel = isFocused || Boolean(value);
+    // Maintain an internal value ONLY if we're in uncontrolled mode (value === undefined).
+    // If `value` is provided, we use that directly (controlled mode).
+    const [uncontrolledValue, setUncontrolledValue] = useState("");
 
-    const handleFocus = () => {
+    // Are we controlled or uncontrolled?
+    const isControlled = value !== undefined;
+
+    // The actual text that should be displayed in the input
+    const displayValue = isControlled ? value : uncontrolledValue;
+
+    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
         setIsFocused(true);
     };
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
     };
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (isControlled) {
+            // Delegate changes to parent
+            onChange?.(e);
+        } else {
+            // Update internal state in uncontrolled mode
+            setUncontrolledValue(e.target.value);
+            // Also call onChange if provided, in case the parent needs notifications
+            onChange?.(e);
+        }
+    };
+
+    // Float the label if the input is focused OR there's some text
+    const shouldFloatLabel = isFocused || Boolean(displayValue);
+
     return (
         <div className={styles.inputWrapper}>
+            {/* The actual input */}
             <input
                 id={inputId}
                 name={name}
                 type={type}
-                value={value}
-                onChange={onChange}
+                value={displayValue}
+                onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 disabled={disabled}
@@ -72,16 +95,13 @@ const CustomInput: React.FC<CustomInputProps> = ({
             {/* Floating label */}
             <label
                 htmlFor={inputId}
-                className={`
-              ${styles.label} 
-              ${shouldFloatLabel ? styles.labelFloat : ""}
-            `}
+                className={`${styles.label} ${shouldFloatLabel ? styles.labelFloat : ""}`}
             >
                 {label}
                 {required && <span className={styles.requiredMark}> *</span>}
             </label>
 
-            {/* Error message */}
+            {/* Error message (if any) */}
             {error && (
                 <p className={styles.errorText} id={`${inputId}-error-text`}>
                     {error}
