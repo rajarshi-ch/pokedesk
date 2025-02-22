@@ -8,21 +8,28 @@ import {
     Button,
     Fieldset, Input, Stack
 } from "@chakra-ui/react"
+import { HeaderText, SubHeaderText } from "./ui/custom-text"
+import CustomInput from "./ui/custom-input/custom-input"
 
 export default function MainForm() {
     return <Box borderRadius={'16px'} bg='white' shadow='lg' minW='488px' p='80px'>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
-                <Fieldset.Legend>Fill This Form</Fieldset.Legend>
-                <Fieldset.HelperText>
-                    We'll use this info to dominate the poke world! Muhahahahah
+                <Fieldset.Legend>
+                    <HeaderText>Fill This Form</HeaderText>
+                </Fieldset.Legend>
+                <Fieldset.HelperText mt={'40px'}>
+                    <SubHeaderText>We'll use this info to dominate the poke world! Muhahahahah</SubHeaderText>
+
                 </Fieldset.HelperText>
             </Stack>
 
             <Fieldset.Content>
-                <Field label="Name">
-                    <Input name="name" />
-                </Field>
+                <CustomInput
+                    label="Full Name"
+                    name="name"
+                    error="Haga hua nai"
+                />
 
                 <Field label="Email address">
                     <Input name="email" type="email" />
