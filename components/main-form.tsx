@@ -1,8 +1,7 @@
 
 import {
     Box,
-    Button,
-    Fieldset, Flex, HStack, IconButton, Input, Stack,
+    Fieldset, HStack, Stack,
     Wrap,
     //useSlider
 } from "@chakra-ui/react"
@@ -12,14 +11,13 @@ import { Slider } from "./ui/slider/slider"
 import { RegionSelector } from "./region-selector"
 import { PokemonSelector } from "./ui/pokemon-selector"
 import { Chip } from "./ui/chip/chip"
-import { IoMdAdd } from "react-icons/io";
-import { ThemeColors } from "@/constants/colors"
+
 import { PrimaryButton } from "./ui/primary-button"
+import { PriceSummary } from "./price-summary"
+import AddPack from "./add-pack"
 
 export default function MainForm() {
-    // const slider = useSlider({
-    //     defaultValue: [40],
-    // });
+
     return <Box borderRadius={'16px'} bg='white' shadow='lg' w='488px' p='80px'>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
@@ -51,15 +49,8 @@ export default function MainForm() {
                 <PokemonSelector region="kanto" />
                 <HStack justifyContent={'space-between'} marginBottom={'10px'} marginTop={'40px'} w='100%' >
                     <SectionHeaderText >What do you want to pack ?</SectionHeaderText>
-                    <IconButton rounded='full' bg={ThemeColors.red} shadow='sm'
-                        transition="transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out"
-                        _hover={{
-                            transform: "scale(1.1)",
-                            boxShadow: "md",
-                        }}
-                    >
-                        <IoMdAdd color='white' />
-                    </IconButton>
+
+                    <AddPack />
                 </HStack>
 
                 <Wrap>
@@ -69,11 +60,7 @@ export default function MainForm() {
                 </Wrap>
 
             </Fieldset.Content>
-
-            <HStack justifyContent={'space-between'} marginBottom={'10px'} marginTop={'40px'} w='100%' >
-                <SubHeaderText> Total Cost</SubHeaderText>
-                <SubHeaderText color="#393B3B"> $232</SubHeaderText>
-            </HStack>
+            <PriceSummary label="Total Cost" value={232} />
             <PrimaryButton>START MY JOURNEY</PrimaryButton>
         </Fieldset.Root>
     </Box>
