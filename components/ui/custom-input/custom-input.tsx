@@ -75,38 +75,39 @@ const CustomInput: React.FC<CustomInputProps> = ({
     const shouldFloatLabel = isFocused || Boolean(displayValue);
 
     return (
-        <div className={styles.inputWrapper}>
-            {/* The actual input */}
-            <input
-                id={inputId}
-                name={name}
-                type={type}
-                value={displayValue}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={disabled}
-                required={required}
-                aria-invalid={!!error}
-                aria-describedby={error ? `${inputId}-error-text` : undefined}
-                className={`${styles.input} ${error ? styles.errorInput : ""}`}
-            />
+        <div className={styles.inputContainer}>
+            <div className={styles.inputWrapper}>
+                {/* The actual input */}
+                <input
+                    id={inputId}
+                    name={name}
+                    type={type}
+                    value={displayValue}
+                    onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    disabled={disabled}
+                    required={required}
+                    aria-invalid={!!error}
+                    aria-describedby={error ? `${inputId}-error-text` : undefined}
+                    className={`${styles.input} ${error ? styles.errorInput : ""}`}
+                />
 
-            {/* Floating label */}
-            <label
-                htmlFor={inputId}
-                className={`${styles.label} ${shouldFloatLabel ? styles.labelFloat : ""}`}
-            >
-                {label}
-                {required && <span className={styles.requiredMark}> *</span>}
-            </label>
+                {/* Floating label */}
+                <label
+                    htmlFor={inputId}
+                    className={`${styles.label} ${shouldFloatLabel ? styles.labelFloat : ""} ${error ? styles.errorLabel : ""}`}
+                >
+                    {label}
+                    {required && <span className={styles.requiredMark}> *</span>}
+                </label>
 
+
+            </div>
             {/* Error message (if any) */}
-            {error && (
-                <p className={styles.errorText} id={`${inputId}-error-text`}>
-                    {error}
-                </p>
-            )}
+            {<p className={`${styles.errorText} ${error ? "" : styles.invisibleText}`} id={`${inputId}-error-text`}>
+                {error ? error : "No Error"}
+            </p>}
         </div>
     );
 };

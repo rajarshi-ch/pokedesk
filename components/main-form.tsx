@@ -28,7 +28,7 @@ export default function MainForm() {
                 <CustomInput
                     label="Full Name"
                     name="name"
-                    error="Haga hua nai"
+                //error="We know that's not your name"
                 />
 
                 <Field label="Email address">
