@@ -1,5 +1,7 @@
 import { Slider as ChakraSlider, For, HStack } from "@chakra-ui/react"
 import * as React from "react"
+import CustomThumb from "./custom-thumb";
+import { ThemeColors } from "@/constants/colors";
 
 export interface SliderProps extends ChakraSlider.RootProps {
   marks?: Array<number | { value: number; label: React.ReactNode }>
@@ -31,8 +33,8 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           </HStack>
         )}
         <ChakraSlider.Control data-has-mark-label={hasMarkLabel || undefined}>
-          <ChakraSlider.Track>
-            <ChakraSlider.Range />
+          <ChakraSlider.Track bgColor={`${ThemeColors.red}29`} height={'2px'}>
+            <ChakraSlider.Range bgColor={ThemeColors.red} />
           </ChakraSlider.Track>
           <SliderThumbs value={value} />
           <SliderMarks marks={marks} />
@@ -44,10 +46,18 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
 function SliderThumbs(props: { value?: number[] }) {
   const { value } = props
+  console.log(value);
   return (
     <For each={value}>
       {(_, index) => (
-        <ChakraSlider.Thumb key={index} index={index}>
+        <ChakraSlider.Thumb key={index} index={index}
+          boxSize="0px"
+          bg="transparent"
+          _focus={{ boxShadow: "none" }}
+          _hover={{ boxShadow: "none" }}
+          _active={{ boxShadow: "none" }}
+        >
+          <CustomThumb value={<ChakraSlider.ValueText />} />
           <ChakraSlider.HiddenInput />
         </ChakraSlider.Thumb>
       )}

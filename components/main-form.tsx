@@ -6,12 +6,18 @@ import {
 import {
     Box,
     Button,
-    Fieldset, Input, Stack
+    Fieldset, Input, Stack,
+    //useSlider
 } from "@chakra-ui/react"
 import { HeaderText, SubHeaderText } from "./ui/custom-text"
 import CustomInput from "./ui/custom-input/custom-input"
+import { Slider } from "./ui/slider/slider"
+import { ThemeColors } from "@/constants/colors"
 
 export default function MainForm() {
+    // const slider = useSlider({
+    //     defaultValue: [40],
+    // });
     return <Box borderRadius={'16px'} bg='white' shadow='lg' minW='488px' p='80px'>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
@@ -30,7 +36,7 @@ export default function MainForm() {
                     name="name"
                     error="We know that's not your name"
                 />
-
+                <Slider defaultValue={[40]} showValue variant="solid" colorPalette={'red'} />
                 <Field label="Email address">
                     <Input name="email" type="email" />
                 </Field>
