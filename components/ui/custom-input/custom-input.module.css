@@ -8,7 +8,7 @@
 }
 
 .inputContainer {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* The input itself: grey background, no border. 
@@ -71,7 +71,7 @@
 
 /* Error state: thick red bottom border */
 .errorInput {
-    border-bottom: 3px solid #f44336;
+    border-bottom: 2px solid #f44336;
     border-radius: 4px 4px 0 0;
 }
 

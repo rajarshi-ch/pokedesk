@@ -1,18 +1,15 @@
-import { Field } from "@/components/ui/field"
-import {
-    NativeSelectField,
-    NativeSelectRoot,
-} from "@/components/ui/native-select"
+
 import {
     Box,
     Button,
     Fieldset, Input, Stack,
     //useSlider
 } from "@chakra-ui/react"
-import { HeaderText, SubHeaderText } from "./ui/custom-text"
+import { HeaderText, SectionHeaderText, SubHeaderText, SubtitleText } from "./ui/custom-text"
 import CustomInput from "./ui/custom-input/custom-input"
 import { Slider } from "./ui/slider/slider"
-import { ThemeColors } from "@/constants/colors"
+import { RegionSelector } from "./region-selector"
+import { PokemonSelector } from "./ui/pokemon-selector"
 
 export default function MainForm() {
     // const slider = useSlider({
@@ -36,23 +33,18 @@ export default function MainForm() {
                     name="name"
                     error="We know that's not your name"
                 />
+                <CustomInput
+                    label="Code Name"
+                    name="codeName"
+                //error="We know that's not your name"
+                />
+                {/* <Box h='10px' /> */}
                 <Slider defaultValue={[40]} showValue variant="solid" colorPalette={'red'} />
-                <Field label="Email address">
-                    <Input name="email" type="email" />
-                </Field>
-
-                <Field label="Country">
-                    <NativeSelectRoot>
-                        <NativeSelectField
-                            name="country"
-                            items={[
-                                "United Kingdom (UK)",
-                                "Canada (CA)",
-                                "United States (US)",
-                            ]}
-                        />
-                    </NativeSelectRoot>
-                </Field>
+                <SubtitleText marginBottom={'40px'} textAlign={'left'}> How far is your nearest pokemon center? (In KMs)</SubtitleText>
+                <RegionSelector />
+                <SectionHeaderText marginBottom={'10px'} marginTop={'40px'} textAlign={'left'}>Choose your starter pokemon</SectionHeaderText>
+                <PokemonSelector region="kanto" />
+                <SectionHeaderText marginBottom={'10px'} marginTop={'40px'} textAlign={'left'}>What do you want to pack ?</SectionHeaderText>
             </Fieldset.Content>
 
             <Button type="submit" alignSelf="flex-start">

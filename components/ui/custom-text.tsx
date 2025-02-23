@@ -48,3 +48,36 @@ export const SubHeaderText: React.FC<CustomTextProps> = ({ children, as = 'h2', 
     );
 };
 
+export const SubtitleText: React.FC<CustomTextProps> = ({ children, as = 'h2', ...props }) => {
+    return (
+        <Text
+            as={as}
+            fontFamily="Roboto"
+            fontWeight="normal"
+            fontSize="14px"
+            lineHeight="17px"
+            letterSpacing="0.46px"
+            color={ThemeColors.grayDE}
+            {...props}
+        >
+            {children}
+        </Text>
+    );
+};
+
+export const SectionHeaderText: React.FC<CustomTextProps> = ({ children, as = 'h2', ...props }) => {
+    return (
+        <Text
+            as={as}
+            fontFamily="Roboto"
+            fontWeight="normal"
+            fontSize="16px"
+            lineHeight="19px"
+            letterSpacing="0.15px"
+            color={ThemeColors.gray99}
+            {...props}
+        >
+            {children}
+        </Text>
+    );
+};
