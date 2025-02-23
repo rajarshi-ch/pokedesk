@@ -1,0 +1,36 @@
+.icon {
+    /* Smooth color transition. */
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    cursor: pointer;
+    color: #00000099;
+}
+
+/* On hover, the icon becomes red and does a shaking animation. */
+.icon:hover {
+    color: #FE5454;
+    animation: shake 0.5s ease-in-out infinite;
+    transform: scale(1.1);
+}
+
+/* Keyframes for the shaking motion. */
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

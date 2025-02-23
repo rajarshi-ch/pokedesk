@@ -11,7 +11,13 @@ const CustomThumb: React.FC<CustomThumbProps> = ({ value }) => {
     const svgAspectRatio = 249 / 128;
     const smallCircleRadius = (width / 2.6) / 2;
     return (
-        <Box position="relative" width="40px" height="60px" bg="tomato">
+        <Box position="relative" width="40px" height="60px" bg="tomato"
+            transition="transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out"
+            _hover={{
+                transform: "scale(1.1)",
+                boxShadow: "md",
+            }}
+        >
             {/* 
         The viewBox is 0 0 40 60. 
         - The top circle has radius ~20px, centered near (20,20).

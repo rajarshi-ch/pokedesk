@@ -13,6 +13,7 @@ interface CustomTextProps extends TextProps {
      * Element type to render the text as, e.g., "h1", "h2". Defaults to "h1".
      */
     as?: React.ElementType;
+    color?: string;
 }
 
 export const HeaderText: React.FC<CustomTextProps> = ({ children, as = 'h1', ...props }) => {
@@ -40,7 +41,7 @@ export const SubHeaderText: React.FC<CustomTextProps> = ({ children, as = 'h2', 
             fontSize="18px"
             lineHeight="22px"
             letterSpacing="0px"
-            color={ThemeColors.gray96}
+            color={props.color ? props.color : ThemeColors.gray96}
             {...props}
         >
             {children}

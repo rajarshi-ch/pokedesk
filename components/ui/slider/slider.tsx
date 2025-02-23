@@ -53,9 +53,9 @@ function SliderThumbs(props: { value?: number[] }) {
         <ChakraSlider.Thumb key={index} index={index}
           boxSize="0px"
           bg="transparent"
-          _focus={{ boxShadow: "none" }}
-          _hover={{ boxShadow: "none" }}
-          _active={{ boxShadow: "none" }}
+        // _focus={{ boxShadow: "none" }}
+        // _hover={{ boxShadow: "none" }}
+        // _active={{ boxShadow: "none" }}
         >
           <CustomThumb value={<ChakraSlider.ValueText />} />
           <ChakraSlider.HiddenInput />
