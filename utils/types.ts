@@ -2,11 +2,13 @@ import { bagItems, priceMap } from "./collections";
 
 // The BagItem class:
 export class BagItem {
+    public id?: string;       // Optional unique identifier
     public item: string;      // "pokeball" | "greatball" | "superpotion" | "hyperpotion"
     public quantity: number;  // 1..10
     public hasBag: boolean;
 
-    constructor(item: string, quantity: number, hasBag: boolean) {
+    constructor(item: string, quantity: number, hasBag: boolean, id?: string) {
+        this.id = id;           // optional
         this.item = item;
         this.quantity = quantity;
         this.hasBag = hasBag;

@@ -46,7 +46,6 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
 function SliderThumbs(props: { value?: number[] }) {
   const { value } = props
-  console.log(value);
   return (
     <For each={value}>
       {(_, index) => (
