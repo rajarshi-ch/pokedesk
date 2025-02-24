@@ -6,6 +6,7 @@ import {
     HStack, IconButton,
     Switch,
     useDialog,
+    UseDialogReturn,
     //useSlider
 } from "@chakra-ui/react"
 import { IoMdAdd } from "react-icons/io";
@@ -29,7 +30,7 @@ import { useEffect, useState } from "react";
 import { BagItem } from "@/utils/types";
 import { generateRandomId } from "@/utils/utils";
 
-export default function AddPack({ item, addItem }: { item?: BagItem, addItem: (item: BagItem) => void }) {
+export default function AddPack({ item, addItem, dialog }: { item?: BagItem, addItem: (item: BagItem) => void, dialog: UseDialogReturn }) {
 
     // Initialize the form state using your BagItem class
     const [bagItem, setBagItem] = useState<BagItem>(
@@ -79,7 +80,15 @@ export default function AddPack({ item, addItem }: { item?: BagItem, addItem: (i
         }
     };
 
-    const dialog = useDialog();
+    useEffect(() => {
+        if (item) {
+            setBagItem(item);
+            handleQuantityChange([item.quantity]);
+            handleHasBagChange(item.hasBag);
+        }
+    }, [item]);
+
+
     return (
         <DialogRootProvider size={'md'} onExitComplete={resetForm} value={dialog}>
             <DialogTrigger asChild>
@@ -97,7 +106,7 @@ export default function AddPack({ item, addItem }: { item?: BagItem, addItem: (i
 
                 <DialogBody>
                     <Box w='full' textAlign='center' mb='40px'>
-                        <HeaderText mb='40px'>Place Your Order</HeaderText>
+                        <HeaderText mb='40px'>{item ? 'Edit' : 'Place'} Your Order</HeaderText>
                         <SubHeaderText>We'll use this info to pack your order! Muhahahahah</SubHeaderText>
 
                     </Box>
@@ -153,7 +162,7 @@ export default function AddPack({ item, addItem }: { item?: BagItem, addItem: (i
                     {/* <DialogActionTrigger asChild>
                         <PrimaryButton onClick={handleSubmit}>ADD TO CART</PrimaryButton>
                     </DialogActionTrigger> */}
-                    <PrimaryButton onClick={handleSubmit}>ADD TO CART</PrimaryButton>
+                    <PrimaryButton onClick={handleSubmit}>{item ? 'UPDATE' : 'ADD TO CART'}</PrimaryButton>
                 </DialogFooter>
                 <DialogCloseTrigger />
             </DialogContent>

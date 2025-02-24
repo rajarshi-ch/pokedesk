@@ -65,7 +65,7 @@ export function CustomSelector({
         <Field invalid={Boolean(error)} errorText={error}>
             <SelectRoot
                 variant={'subtle'}
-                //value={[value]}
+                value={value ? [value] : []}
                 onValueChange={(val) => {
                     onChange?.(val.value[0] as string);
                 }}

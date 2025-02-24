@@ -4,6 +4,7 @@ import {
     Box,
     Collapsible,
     Fieldset, HStack, Stack,
+    useDialog,
     Wrap,
     //useSlider
 } from "@chakra-ui/react"
@@ -33,7 +34,7 @@ export default function MainForm() {
     const [pokemon, setPokemon] = useState<PokemonName | undefined>();
     const [errors, setErrors] = useState<FormErrors>({});
     const [bagItems, setBagItems] = useState<BagItem[]>([...defaultBagItems]);
-
+    const [itemEdit, setItemEdit] = useState<BagItem | undefined>(undefined);
     useEffect(() => {
         // Debounce validation by 500ms
         const handler = setTimeout(() => {
@@ -138,7 +139,9 @@ export default function MainForm() {
         setErrors((oldErrors) => { return { ...oldErrors, items: undefined } });
     }
 
-    return <Box borderRadius={'16px'} bg='white' shadow='lg' w='488px' p='80px'>
+    const dialog = useDialog();
+
+    return <Box borderRadius={'16px'} bg='white' shadow='lg' w='488px' p='80px' my={10}>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
                 <Fieldset.Legend>
@@ -192,11 +195,14 @@ export default function MainForm() {
                 <HStack justifyContent={'space-between'} marginBottom={'10px'} marginTop={'40px'} w='100%' >
                     <SectionHeaderText >What do you want to pack ?</SectionHeaderText>
 
-                    <AddPack addItem={addItem} />
+                    <AddPack addItem={addItem} dialog={dialog} item={itemEdit} />
                 </HStack>
                 <Field errorText={errors.items} invalid={Boolean(errors.items)}>
                     <Wrap>
-                        {bagItems.map((item) => <Chip item={item} key={item.id} onRemove={() => setBagItems(bagItems.filter((i) => i.id !== item.id))} />)}
+                        {bagItems.map((item) => <Chip item={item} key={item.id} onRemove={() => setBagItems(bagItems.filter((i) => i.id !== item.id))} onClick={() => {
+                            setItemEdit(item);
+                            dialog.setOpen(true);
+                        }} />)}
                     </Wrap>
                 </Field>
             </Fieldset.Content>
