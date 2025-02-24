@@ -5,13 +5,10 @@ import { HStack, Text } from "@chakra-ui/react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { ThemeColors } from "@/utils/colors";
 import styles from "./chip.module.css";
+import { BagItem } from "@/utils/types";
 
 interface ChipProps {
-    /** The text to display in the chip. */
-    label: string;
-    /** Whether the chip is in "active" state or not. */
-    isActive?: boolean;
-    /** Called when the chip is clicked (if you need a click handler). */
+    item: BagItem;
     onClick?: () => void;
     /** Called when the cross (remove) button is clicked. */
     onRemove?: () => void;
@@ -26,13 +23,12 @@ interface ChipProps {
  * - Active vs. inactive background color
  */
 export const Chip: React.FC<ChipProps> = ({
-    label,
-    isActive = false,
+    item,
     onClick,
     onRemove,
 }) => {
     // Switch background color based on isActive
-    const bgColor = isActive ? ThemeColors.lightBlue : ThemeColors.grayDF;
+    const bgColor = item.hasBag ? ThemeColors.lightBlue : ThemeColors.grayDF;
 
     return (
         <HStack
@@ -54,7 +50,7 @@ export const Chip: React.FC<ChipProps> = ({
         >
             {/* Chip label */}
             <Text color="black" fontSize="sm">
-                {label}
+                {item.displayLabel}
             </Text>
 
             {/* Cross button on the right */}

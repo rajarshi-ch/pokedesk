@@ -24,21 +24,21 @@ import { CustomSelector } from "@/components/custom-selector";
 import { Slider } from "@/components/ui/slider/slider";
 import { PriceSummary } from "@/components/price-summary";
 import { PrimaryButton } from "@/components/ui/primary-button";
-import { bagItems } from "@/utils/collections";
+import { bagItems, bagItemType } from "@/utils/collections";
 import { useEffect, useState } from "react";
 import { BagItem } from "@/utils/types";
 import { generateRandomId } from "@/utils/utils";
 
-export default function AddPack({ item }: { item?: BagItem }) {
+export default function AddPack({ item, addItem }: { item?: BagItem, addItem: (item: BagItem) => void }) {
 
     // Initialize the form state using your BagItem class
     const [bagItem, setBagItem] = useState<BagItem>(
-        () => item ? item : new BagItem("", 0, false, generateRandomId(5))
+        () => item ? item : new BagItem(undefined, 0, false, generateRandomId(5))
     );
 
     // For the item selector: update the `item` field
     const handleItemChange = (newItemValue: string) => {
-        setBagItem(oldState => new BagItem(newItemValue, oldState.quantity, oldState.hasBag, oldState.id));
+        setBagItem(oldState => new BagItem(newItemValue as bagItemType, oldState.quantity, oldState.hasBag, oldState.id));
         if (error) setError(undefined);
     };
 
@@ -54,7 +54,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
     };
 
     const resetForm = () => {
-        setBagItem(new BagItem("", 0, false, generateRandomId(5)));
+        setBagItem(new BagItem(undefined, 0, false, generateRandomId(5)));
         setError(undefined);
     };
 
@@ -74,7 +74,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
         e.preventDefault();
         if (validateForm()) {
             //TODO: SUBMIT
-
+            addItem(bagItem);
             dialog.setOpen(false);
         }
     };

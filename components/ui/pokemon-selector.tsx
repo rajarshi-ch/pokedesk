@@ -3,21 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Image, HStack } from "@chakra-ui/react";
 import { ThemeColors } from "@/utils/colors";
+import { PokemonName, Region } from "@/utils/collections";
 
-/** Regions we support */
-export type Region = "kanto" | "jhoto" | "hoenn";
 
-/** Starter Pokémon names for each region */
-export type PokemonName =
-    | "Bulbasaur"
-    | "Charmander"
-    | "Squirtle"
-    | "Chikorita"
-    | "Cyndaquil"
-    | "Totodile"
-    | "Treecko"
-    | "Torchic"
-    | "Mudkip";
 
 /** Map each region to its three starter Pokémon */
 interface PokemonOption {
@@ -135,17 +123,18 @@ export const PokemonSelector: React.FC<PokemonSelectorProps> = ({
                         overflow="hidden"
                         bg={ThemeColors.grayF0}
                         transition="transform 0.2s, box-shadow 0.2s"
-                        transform={isSelected ? "scale(1.1)" : "scale(1.0)"}
-                        boxShadow={isSelected ? "0 0 0 3px red" : "none"}
+                        transform={isSelected ? "scale(1.05)" : "scale(1.0)"}
+                        boxShadow={isSelected ? "0 0 0 2px " + ThemeColors.red : "none"}
                         _hover={{
                             transform: "scale(1.1)",
-                            boxShadow: "0 0 0 2px " + ThemeColors.red,
+                            //boxShadow: "0 0 0 2px " + ThemeColors.red,
                         }}
                         w='100px'
                         h='100px'
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        scale={0.9}
                     >
                         <Image
                             src={poke.image}

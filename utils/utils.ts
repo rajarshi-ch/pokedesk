@@ -4,13 +4,16 @@
  * @returns A random string of the given length.
  */
 export function generateRandomId(length: number = 10): string {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
 
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * chars.length);
-        result += chars[randomIndex];
-    }
+    //TODO: We can change random id logic as per requirements
 
-    return result;
+    // const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // let result = "";
+
+    // for (let i = 0; i < length; i++) {
+    //     const randomIndex = Math.floor(Math.random() * chars.length);
+    //     result += chars[randomIndex];
+    // }
+
+    return crypto.randomUUID();
 }
