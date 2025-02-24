@@ -37,7 +37,7 @@ export default function FinalDialog({ fullName, codeName, distance, region, poke
         <DialogRootProvider size={'md'} value={dialog}
         >
 
-            <DialogContent w='488px' p='40px' >
+            <DialogContent w='488px' p='40px' className='light'>
 
                 <DialogBody spaceY={2} >
 

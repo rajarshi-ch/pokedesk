@@ -99,7 +99,7 @@ export default function AddPack({ item, addItem, dialog }: { item?: BagItem, add
                     <IoMdAdd color='white' />
                 </IconButton>
             </DialogTrigger>
-            <DialogContent w='488px' p='40px'>
+            <DialogContent w='488px' p='40px' className='light'>
 
                 <DialogBody>
                     <Box w='full' textAlign='center' mb='40px'>
