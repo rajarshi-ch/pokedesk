@@ -81,7 +81,7 @@ export function CustomSelector({
                         color={ThemeColors.gray99}
                     />
                 </SelectTrigger>
-                <SelectContent zIndex={2000} className='light'>
+                <SelectContent zIndex={2000} >
                     {collection.items.map((option) => (
                         <SelectItem item={option} key={option.value}>
                             {option.label}
