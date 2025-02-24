@@ -5,7 +5,6 @@ import { createListCollection } from "@chakra-ui/react";
 import {
     SelectContent,
     SelectItem,
-    SelectLabel,
     SelectRoot,
     SelectTrigger,
     SelectValueText,

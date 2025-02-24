@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, ChangeEvent, FocusEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import styles from "./custom-input.module.css";
 
 type CustomInputProps = {
@@ -51,11 +51,11 @@ const CustomInput: React.FC<CustomInputProps> = ({
     // The actual text that should be displayed in the input
     const displayValue = isControlled ? value : uncontrolledValue;
 
-    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    const handleFocus = () => {
         setIsFocused(true);
     };
 
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const handleBlur = () => {
         setIsFocused(false);
     };
 

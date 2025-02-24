@@ -19,8 +19,6 @@ import { HeaderText, SectionHeaderText, SubHeaderText } from "@/components/ui/cu
 import { PriceSummary } from "@/components/price-summary";
 import { PokemonName, RegionValue, starterPokemon } from "@/utils/collections";
 import { BagItem } from "@/utils/types";
-import { start } from "repl";
-import { useColorModeValue } from "./ui/color-mode";
 
 interface FinalDialogProps {
     fullName: string;
@@ -33,9 +31,6 @@ interface FinalDialogProps {
 }
 export default function FinalDialog({ fullName, codeName, distance, region, pokemon, bagItems, dialog }: FinalDialogProps) {
 
-    // Adjust to your liking or theme.
-    const cardBg = useColorModeValue('yellow.50', 'gray.700');
-    const cardBorderColor = useColorModeValue('yellow.200', 'gray.600');
 
 
     return (

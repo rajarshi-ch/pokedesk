@@ -121,7 +121,7 @@ export default function MainForm() {
         setBagItems((prev) => {
             // Optionally ensure we have an ID. If BagItem.id is always present, skip this.
             if (!newItem.id) {
-                newItem.id = generateRandomId(5) // or any ID generator you prefer
+                newItem.id = generateRandomId() // or any ID generator you prefer
             }
 
             // Check if there's an existing item with the same ID

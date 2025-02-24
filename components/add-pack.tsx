@@ -5,19 +5,16 @@ import {
     DialogRootProvider,
     HStack, IconButton,
     Switch,
-    useDialog,
     UseDialogReturn,
     //useSlider
 } from "@chakra-ui/react"
 import { IoMdAdd } from "react-icons/io";
 import { ThemeColors } from "@/utils/colors"
 import {
-    DialogActionTrigger,
     DialogBody,
     DialogCloseTrigger,
     DialogContent,
     DialogFooter,
-    DialogRoot,
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { HeaderText, SectionHeaderText, SubHeaderText, SubtitleText } from "@/components/ui/custom-text"
@@ -34,7 +31,7 @@ export default function AddPack({ item, addItem, dialog }: { item?: BagItem, add
 
     // Initialize the form state using your BagItem class
     const [bagItem, setBagItem] = useState<BagItem>(
-        () => item ? item : new BagItem(undefined, 0, false, generateRandomId(5))
+        () => item ? item : new BagItem(undefined, 0, false, generateRandomId())
     );
 
     // For the item selector: update the `item` field
@@ -55,7 +52,7 @@ export default function AddPack({ item, addItem, dialog }: { item?: BagItem, add
     };
 
     const resetForm = () => {
-        setBagItem(new BagItem(undefined, 0, false, generateRandomId(5)));
+        setBagItem(new BagItem(undefined, 0, false, generateRandomId()));
         setError(undefined);
     };
 

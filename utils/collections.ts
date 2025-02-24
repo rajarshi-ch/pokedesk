@@ -42,9 +42,9 @@ export const priceMap: { [key: string]: number } = {
 }
 
 export const defaultBagItems: BagItem[] = [
-    new BagItem('pokeball', 6, true, generateRandomId(5)),
-    new BagItem('greatball', 10, false, generateRandomId(5)),
-    new BagItem('superpotion', 10, false, generateRandomId(5)),
+    new BagItem('pokeball', 6, true, generateRandomId()),
+    new BagItem('greatball', 10, false, generateRandomId()),
+    new BagItem('superpotion', 10, false, generateRandomId()),
 ]
 
 export const starterPokemon: Record<Region, PokemonOption[]> = {

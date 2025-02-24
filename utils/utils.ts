@@ -3,7 +3,7 @@
  * @param length - The desired length of the string (default 10).
  * @returns A random string of the given length.
  */
-export function generateRandomId(length: number = 10): string {
+export function generateRandomId(): string {
 
     //TODO: We can change random id logic as per requirements
 
