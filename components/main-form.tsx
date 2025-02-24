@@ -15,7 +15,7 @@ import { Chip } from "./ui/chip/chip"
 import { PrimaryButton } from "./ui/primary-button"
 import { PriceSummary } from "./price-summary"
 import AddPack from "./add-pack"
-import { regionItems, RegionValue } from "@/constants/collections"
+import { regionItems, RegionValue } from "@/utils/collections"
 
 export default function MainForm() {
 

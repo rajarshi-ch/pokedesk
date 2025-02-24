@@ -3,7 +3,7 @@
 import React from "react";
 import { HStack, Text } from "@chakra-ui/react";
 import { IoMdCloseCircle } from "react-icons/io";
-import { ThemeColors } from "@/constants/colors";
+import { ThemeColors } from "@/utils/colors";
 import styles from "./chip.module.css";
 
 interface ChipProps {

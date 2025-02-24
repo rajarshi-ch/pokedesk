@@ -10,7 +10,7 @@ import {
     SelectTrigger,
     SelectValueText,
 } from "@/components/ui/select";
-import { ThemeColors } from "@/constants/colors";
+import { ThemeColors } from "@/utils/colors";
 
 type SelectorItem<TValue extends string> = {
     label: string;

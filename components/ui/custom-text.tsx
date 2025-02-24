@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Text, TextProps } from '@chakra-ui/react';
-import { ThemeColors } from '@/constants/colors';
+import { ThemeColors } from '@/utils/colors';
 
 interface CustomTextProps extends TextProps {
     /**

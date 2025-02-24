@@ -5,7 +5,7 @@ import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
 import { CloseButton } from "./close-button"
 import * as React from "react"
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { ThemeColors } from "@/constants/colors"
+import { ThemeColors } from "@/utils/colors"
 
 
 interface SelectTriggerProps extends ChakraSelect.ControlProps {

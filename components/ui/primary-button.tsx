@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, ButtonProps } from "@chakra-ui/react";
-import { ThemeColors } from "@/constants/colors";
+import { ThemeColors } from "@/utils/colors";
 
 
 interface PrimaryButtonProps extends ButtonProps {

@@ -1,7 +1,7 @@
 import { Slider as ChakraSlider, For, HStack } from "@chakra-ui/react"
 import * as React from "react"
 import CustomThumb from "./custom-thumb";
-import { ThemeColors } from "@/constants/colors";
+import { ThemeColors } from "@/utils/colors";
 
 export interface SliderProps extends ChakraSlider.RootProps {
   marks?: Array<number | { value: number; label: React.ReactNode }>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Box, Image, HStack } from "@chakra-ui/react";
-import { ThemeColors } from "@/constants/colors";
+import { ThemeColors } from "@/utils/colors";
 
 /** Regions we support */
 export type Region = "kanto" | "jhoto" | "hoenn";

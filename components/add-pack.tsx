@@ -5,7 +5,7 @@ import {
     //useSlider
 } from "@chakra-ui/react"
 import { IoMdAdd } from "react-icons/io";
-import { ThemeColors } from "@/constants/colors"
+import { ThemeColors } from "@/utils/colors"
 import {
     DialogActionTrigger,
     DialogBody,
@@ -20,7 +20,7 @@ import { CustomSelector } from "@/components/custom-selector";
 import { Slider } from "@/components/ui/slider/slider";
 import { PriceSummary } from "@/components/price-summary";
 import { PrimaryButton } from "@/components/ui/primary-button";
-import { bagItems } from "@/constants/collections";
+import { bagItems } from "@/utils/collections";
 
 export default function AddPack() {
 
@@ -65,8 +65,25 @@ export default function AddPack() {
                         <SectionHeaderText> I need a bag for that!</SectionHeaderText>
                         <Switch.Root variant='raised' key='want-bag'>
                             <Switch.HiddenInput />
-                            <Switch.Control bg={`${ThemeColors.red}29`} >
-                                <Switch.Thumb bg={ThemeColors.red} />
+                            <Switch.Control bg="gray.300"
+                                // Transition for smooth color change
+                                transition="background-color 0.2s ease"
+
+                                // Checked state overrides
+                                _checked={{
+                                    bg: `${ThemeColors.red}29`, // red with some transparency, for example
+                                }} >
+                                <Switch.Thumb
+                                    bg="white"
+
+                                    // Let the thumb color or transform also transition
+                                    transition="background-color 0.2s ease, transform 0.2s ease"
+
+                                    // Move thumb to the right and change color in checked state
+                                    _checked={{
+                                        bg: ThemeColors.red,
+
+                                    }} />
                             </Switch.Control>
                             <Switch.Label />
                         </Switch.Root>

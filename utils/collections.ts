@@ -19,7 +19,7 @@ Super Potion: $10 Each
 Hyper Potion: $20 Each
 Bag: $2 Each
 */
-export const priceMap = {
+export const priceMap: { [key: string]: number } = {
     "pokeball": 5,
     "greatball": 10,
     "superpotion": 10,
