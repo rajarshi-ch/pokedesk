@@ -141,6 +141,13 @@ export default function MainForm() {
 
     const dialog = useDialog();
 
+    // Cleanup edit modal
+    useEffect(() => {
+        if (!dialog.open) {
+            setItemEdit(undefined);
+        }
+    }, [dialog.open]);
+
     return <Box borderRadius={'16px'} bg='white' shadow='lg' w='488px' p='80px' my={10}>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
