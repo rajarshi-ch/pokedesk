@@ -16,10 +16,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { HeaderText, SectionHeaderText, SubHeaderText, SubtitleText } from "@/components/ui/custom-text"
-import { RegionSelector } from "@/components//region-selector";
+import { CustomSelector } from "@/components/custom-selector";
 import { Slider } from "@/components/ui/slider/slider";
 import { PriceSummary } from "@/components/price-summary";
 import { PrimaryButton } from "@/components/ui/primary-button";
+import { bagItems } from "@/constants/collections";
 
 export default function AddPack() {
 
@@ -44,9 +45,20 @@ export default function AddPack() {
                         <SubHeaderText>We'll use this info to pack your order! Muhahahahah</SubHeaderText>
 
                     </Box>
-                    <RegionSelector />
+                    <CustomSelector
+                        key={'add-pack'}
+                        items={bagItems}
+                        // value={region}
+                        // onChange={(newValue) => {
+                        //   console.log("New region selected: ", newValue);
+                        //   setRegion(newValue);
+                        // }}
+                        placeholder="Choose Item"
 
-                    <Slider defaultValue={[40]} showValue variant="solid" colorPalette={'red'} />
+                    />
+                    <Box h='40px' />
+
+                    <Slider defaultValue={[1]} min={1} max={10} showValue variant="solid" colorPalette={'red'} />
                     <SubtitleText marginBottom={'40px'} textAlign={'left'}>Select Quantity</SubtitleText>
 
                     <HStack justifyContent={'space-between'} marginBottom={'10px'} marginTop={'40px'} w='100%' >
