@@ -11,6 +11,7 @@ import {
     SelectValueText,
 } from "@/components/ui/select";
 import { ThemeColors } from "@/utils/colors";
+import { Field } from "./ui/field";
 
 type SelectorItem<TValue extends string> = {
     label: string;
@@ -36,6 +37,7 @@ interface CustomSelectorProps {
     value?: string;
     /** (Optional) Label shown above the trigger inside the SelectRoot */
     label?: string;
+    error?: string;
 }
 
 /**
@@ -51,6 +53,7 @@ export function CustomSelector({
     onChange,
     placeholder = "Select an option",
     value,
+    error,
 
 }: CustomSelectorProps) {
     // Create a listCollection from the passed-in items
@@ -59,31 +62,33 @@ export function CustomSelector({
     });
 
     return (
-        <SelectRoot
-            variant={'subtle'}
-            //value={[value]}
-            onValueChange={(val) => {
-                onChange?.(val.value[0] as string);
-            }}
-            collection={collection}
-        >
-            {/* <SelectLabel>Select your region</SelectLabel> */}
-            <SelectTrigger>
-                <SelectValueText height={'56px'} placeholder={placeholder}
-                    display={'inline-flex'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    fontSize={'1rem'}
-                    color={ThemeColors.gray99}
-                />
-            </SelectTrigger>
-            <SelectContent zIndex={2000}>
-                {collection.items.map((option) => (
-                    <SelectItem item={option} key={option.value}>
-                        {option.label}
-                    </SelectItem>
-                ))}
-            </SelectContent>
-        </SelectRoot>
+        <Field invalid={Boolean(error)} errorText={error}>
+            <SelectRoot
+                variant={'subtle'}
+                //value={[value]}
+                onValueChange={(val) => {
+                    onChange?.(val.value[0] as string);
+                }}
+                collection={collection}
+            >
+                {/* <SelectLabel>Select your region</SelectLabel> */}
+                <SelectTrigger>
+                    <SelectValueText height={'56px'} placeholder={placeholder}
+                        display={'inline-flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                        fontSize={'1rem'}
+                        color={ThemeColors.gray99}
+                    />
+                </SelectTrigger>
+                <SelectContent zIndex={2000}>
+                    {collection.items.map((option) => (
+                        <SelectItem item={option} key={option.value}>
+                            {option.label}
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </SelectRoot>
+        </Field>
     );
 }

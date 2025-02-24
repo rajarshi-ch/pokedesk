@@ -2,8 +2,10 @@
 
 import {
     Box,
+    DialogRootProvider,
     HStack, IconButton,
     Switch,
+    useDialog,
     //useSlider
 } from "@chakra-ui/react"
 import { IoMdAdd } from "react-icons/io";
@@ -37,6 +39,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
     // For the item selector: update the `item` field
     const handleItemChange = (newItemValue: string) => {
         setBagItem(oldState => new BagItem(newItemValue, oldState.quantity, oldState.hasBag, oldState.id));
+        if (error) setError(undefined);
     };
 
     // For the quantity slider: update the `quantity`
@@ -52,10 +55,33 @@ export default function AddPack({ item }: { item?: BagItem }) {
 
     const resetForm = () => {
         setBagItem(new BagItem("", 0, false, generateRandomId(5)));
+        setError(undefined);
     };
 
+    const [error, setError] = useState<string>();
+
+    const validateForm = () => {
+        if (bagItem.item) {
+            setError(undefined);
+            return true;
+        } else {
+            setError('Please select an item');
+            return false;
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validateForm()) {
+            //TODO: SUBMIT
+
+            dialog.setOpen(false);
+        }
+    };
+
+    const dialog = useDialog();
     return (
-        <DialogRoot size={'md'} onExitComplete={resetForm}>
+        <DialogRootProvider size={'md'} onExitComplete={resetForm} value={dialog}>
             <DialogTrigger asChild>
                 <IconButton rounded='full' bg={ThemeColors.red} shadow='sm'
                     transition="transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out"
@@ -81,7 +107,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
                         value={bagItem.item}               // selected item
                         onChange={handleItemChange}
                         placeholder="Choose Item"
-
+                        error={error}
                     />
                     <Box h='40px' />
 
@@ -93,6 +119,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
                         <Switch.Root variant='raised' key='want-bag'
                             checked={bagItem.hasBag}
                             onCheckedChange={(change) => handleHasBagChange(change.checked)}
+                            disabled={bagItem.item ? false : true}
                         >
                             <Switch.HiddenInput />
                             <Switch.Control bg="gray.300"
@@ -123,12 +150,13 @@ export default function AddPack({ item }: { item?: BagItem }) {
                 </DialogBody>
                 <DialogFooter justifyContent={'center'}>
 
-                    <DialogActionTrigger asChild>
-                        <PrimaryButton disabled={bagItem.cost <= 0} onClick={() => console.log(bagItem)}>ADD TO CART</PrimaryButton>
-                    </DialogActionTrigger>
+                    {/* <DialogActionTrigger asChild>
+                        <PrimaryButton onClick={handleSubmit}>ADD TO CART</PrimaryButton>
+                    </DialogActionTrigger> */}
+                    <PrimaryButton onClick={handleSubmit}>ADD TO CART</PrimaryButton>
                 </DialogFooter>
                 <DialogCloseTrigger />
             </DialogContent>
-        </DialogRoot>
+        </DialogRootProvider>
     );
 }
