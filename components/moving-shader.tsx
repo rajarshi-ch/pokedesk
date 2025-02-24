@@ -31,7 +31,10 @@ const MovingShader: React.FC<MovingShaderProps> = ({ className, style }) => {
   precision mediump float;
   varying vec2 v_uv;
   uniform float u_time;
-
+  // Pseudo-random
+    float rand(vec2 co) {
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453123);
+    }
   void main() {
     // Transform v_uv from [0,1] to [-1,1] for symmetrical effects
     vec2 uv = v_uv * 2.0 - 1.0;
@@ -46,12 +49,12 @@ const MovingShader: React.FC<MovingShaderProps> = ({ className, style }) => {
     // Combine multiple sine waves
     float wave = sin(uv.x * 2.0 + time * 0.7) + cos(uv.y * 2.0 - time * 0.3);
     // Map to 0..1
-    float brightness = 0.15 + 0.15 * wave;
+    float brightness = 0.8 + 0.5 * wave;
 
     // Color palette: dark greenish base, purple highlight, teal mid-tone
-    vec3 colorA = vec3(0.0, 0.1, 0.0);  // near-black with a slight green tint
-    vec3 colorB = vec3(0.553, 0.490, 0.792);  // purple
-    vec3 colorC = vec3(0.0, 0.4, 0.2);  // teal-green
+    vec3 colorA = vec3(1.00,0.33,0.33);  // near-black with a slight green tint
+    vec3 colorB = vec3(0.00,0.00,0.00);  // purple
+    vec3 colorC = vec3(0.46,0.96,1.00);  // teal-green
 
     // vec3 colorA = vec3(0.376, 0.376, 0.502);
     // vec3 colorB = vec3(0.553, 0.490, 0.792);
@@ -60,10 +63,24 @@ const MovingShader: React.FC<MovingShaderProps> = ({ className, style }) => {
 
     // Two-step color mix 
     vec3 col = mix(colorA, colorB, brightness);
-    col = mix(col, colorC, brightness * 0.5);
+    col = mix(col, colorC, brightness * 0.2);
+
+    // ==================================================
+    // ADD GRAIN: just a small random offset to col
+    // ==================================================
+    // We'll get a noise value between 0.0 and 1.0
+    // and shift it so it can be negative or positive around 0
+    float noise = rand(uv * 500.0 + u_time * 100.0) - 0.5; 
+    // scale it down so it’s subtle
+    float grainStrength = 0.08; // tweak to taste
+
+    // Add or multiply the color
+    // Typically, adding a small offset is enough for “film grain”
+    col += noise * grainStrength;
 
     // Final output
     gl_FragColor = vec4(col, 1.0);
+
   }
 `;
 

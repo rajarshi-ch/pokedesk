@@ -150,7 +150,7 @@ export default function MainForm() {
         }
     }, [dialog.open]);
 
-    return <Box borderRadius={'16px'} bg='white' shadow='lg' w='488px' p='80px' my={10}>
+    return <Box borderRadius={'16px'} bg='white' shadow='xl' w='488px' p='80px' my={10}>
         <Fieldset.Root size="lg" maxW="md">
             <Stack>
                 <Fieldset.Legend>

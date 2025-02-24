@@ -26,12 +26,12 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
             type="button"
             alignSelf="center"
             bg={ThemeColors.red}
-            shadow="sm"
+            shadow="xs"
             color="white"
             transition="transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out"
             _hover={{
                 transform: "scale(1.1)",
-                boxShadow: "md",
+                boxShadow: "sm",
             }}
             font='roboto'
             fontSize='14px'

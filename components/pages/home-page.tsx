@@ -35,7 +35,7 @@ export default function HomePage() {
     const offsetY = 60;
 
     return (
-        <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+        <div style={{ position: 'relative', width: '100%', height: '100vh' }} className='light'>
             {/* 1) The background shader fills the container absolutely */}
             <MovingShader
                 style={{
@@ -58,7 +58,7 @@ export default function HomePage() {
                     fontSize="xl"
                     width='100%'
                     height='100vh'
-                    bg='#00000050'
+                    //bg='#00000050'
                     overflowY='scroll'>
                     <MainForm />
                 </Box>
