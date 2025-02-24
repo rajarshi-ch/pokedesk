@@ -23,7 +23,7 @@ import { Slider } from "@/components/ui/slider/slider";
 import { PriceSummary } from "@/components/price-summary";
 import { PrimaryButton } from "@/components/ui/primary-button";
 import { bagItems } from "@/utils/collections";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BagItem } from "@/utils/types";
 import { generateRandomId } from "@/utils/utils";
 
@@ -31,7 +31,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
 
     // Initialize the form state using your BagItem class
     const [bagItem, setBagItem] = useState<BagItem>(
-        () => item ? item : new BagItem("pokeball", 1, false, generateRandomId(5))
+        () => item ? item : new BagItem("", 0, false, generateRandomId(5))
     );
 
     // For the item selector: update the `item` field
@@ -50,9 +50,12 @@ export default function AddPack({ item }: { item?: BagItem }) {
         setBagItem(oldState => new BagItem(oldState.item, oldState.quantity, checked, oldState.id));
     };
 
+    const resetForm = () => {
+        setBagItem(new BagItem("", 0, false, generateRandomId(5)));
+    };
 
     return (
-        <DialogRoot size={'md'}>
+        <DialogRoot size={'md'} onExitComplete={resetForm}>
             <DialogTrigger asChild>
                 <IconButton rounded='full' bg={ThemeColors.red} shadow='sm'
                     transition="transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out"
@@ -121,7 +124,7 @@ export default function AddPack({ item }: { item?: BagItem }) {
                 <DialogFooter justifyContent={'center'}>
 
                     <DialogActionTrigger asChild>
-                        <PrimaryButton onClick={() => console.log(bagItem)}>ADD TO CART</PrimaryButton>
+                        <PrimaryButton disabled={bagItem.cost <= 0} onClick={() => console.log(bagItem)}>ADD TO CART</PrimaryButton>
                     </DialogActionTrigger>
                 </DialogFooter>
                 <DialogCloseTrigger />
