@@ -59,7 +59,8 @@ export default function HomePage() {
                     width='100%'
                     height='100vh'
                     //bg='#00000050'
-                    overflowY='scroll'>
+                    overflowY='scroll'
+                    className='light'>
                     <MainForm />
                 </Box>
             </div>

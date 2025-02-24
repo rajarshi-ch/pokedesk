@@ -61,7 +61,7 @@ export function CustomSelector({
     });
 
     return (
-        <Field invalid={Boolean(error)} errorText={error} className='light'>
+        <Field invalid={Boolean(error)} errorText={error} >
             <SelectRoot
                 variant={'subtle'}
                 value={value ? [value] : []}
