@@ -12,7 +12,7 @@ import { HeaderText, SectionHeaderText, SubHeaderText, SubtitleText } from "./ui
 import CustomInput from "./ui/custom-input/custom-input"
 import { Slider } from "./ui/slider/slider"
 import { CustomSelector } from "./custom-selector"
-import { PokemonSelector } from "./ui/pokemon-selector"
+import { PokemonSelector } from "./pokemon-selector"
 import { Chip } from "./ui/chip/chip"
 
 import { PrimaryButton } from "./ui/primary-button"
@@ -23,6 +23,7 @@ import { useEffect, useState } from "react"
 import { Field } from "./ui/field"
 import { BagItem } from "@/utils/types"
 import { generateRandomId } from "@/utils/utils"
+import FinalDialog from "./final-dialog"
 
 interface FormErrors { fullName?: string; codeName?: string, region?: string, pokemon?: string, items?: string }
 export default function MainForm() {
@@ -105,7 +106,7 @@ export default function MainForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (validateForm()) {
-            //TODO: SUBMIT
+            finalDialog.setOpen(true);
 
 
         }
@@ -140,6 +141,7 @@ export default function MainForm() {
     }
 
     const dialog = useDialog();
+    const finalDialog = useDialog();
 
     // Cleanup edit modal
     useEffect(() => {
@@ -216,5 +218,6 @@ export default function MainForm() {
             <PriceSummary label="Total Cost" value={bagItems.reduce((acc, item) => acc + item.cost, 0)} />
             <PrimaryButton onClick={handleSubmit}>START MY JOURNEY</PrimaryButton>
         </Fieldset.Root>
+        <FinalDialog fullName={fullName} codeName={codeName} distance={distance} region={region} pokemon={pokemon} bagItems={bagItems} dialog={finalDialog} />
     </Box>
 }

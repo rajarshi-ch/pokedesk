@@ -1,4 +1,4 @@
-import { bagItems, bagItemType, priceMap } from "./collections";
+import { bagItems, bagItemType, PokemonName, priceMap } from "./collections";
 
 // The BagItem class:
 export class BagItem {
@@ -31,4 +31,9 @@ export class BagItem {
 
         return baseCost * this.quantity + bagCost;
     }
+}
+
+export interface PokemonOption {
+    name: PokemonName;
+    image: string;
 }

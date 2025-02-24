@@ -3,60 +3,12 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Image, HStack } from "@chakra-ui/react";
 import { ThemeColors } from "@/utils/colors";
-import { PokemonName, Region } from "@/utils/collections";
+import { PokemonName, Region, starterPokemon } from "@/utils/collections";
 
 
 
 /** Map each region to its three starter Pokémon */
-interface PokemonOption {
-    name: PokemonName;
-    image: string;
-}
 
-const STARTERS: Record<Region, PokemonOption[]> = {
-    kanto: [
-        {
-            name: "Bulbasaur",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png",
-        },
-        {
-            name: "Charmander",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png",
-        },
-        {
-            name: "Squirtle",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png",
-        },
-    ],
-    jhoto: [
-        {
-            name: "Chikorita",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/152.png",
-        },
-        {
-            name: "Cyndaquil",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/155.png",
-        },
-        {
-            name: "Totodile",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/158.png",
-        },
-    ],
-    hoenn: [
-        {
-            name: "Treecko",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/252.png",
-        },
-        {
-            name: "Torchic",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/255.png",
-        },
-        {
-            name: "Mudkip",
-            image: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/258.png",
-        },
-    ],
-};
 
 /** Props for the PokemonSelector */
 interface PokemonSelectorProps {
@@ -73,7 +25,7 @@ export const PokemonSelector: React.FC<PokemonSelectorProps> = ({
     selectedPokemon,
     onChange,
 }) => {
-    const starters = STARTERS[region];
+    const starters = starterPokemon[region];
 
     // Create refs for our audio elements
     const hoverSoundRef = useRef<HTMLAudioElement | null>(null);
