@@ -55,7 +55,12 @@ export const Chip: React.FC<ChipProps> = ({
 
             {/* Cross button on the right */}
             <IoMdCloseCircle className={styles.icon} size="25px"
-                onClick={onRemove} />
+                onClick={(event: React.MouseEvent) => {
+                    // Prevent the click event from bubbling up
+                    event.stopPropagation();
+                    onRemove?.();
+                    // ... remove chip logic
+                }} />
         </HStack>
     );
 };
